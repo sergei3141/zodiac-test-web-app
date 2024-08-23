@@ -5,41 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFishFins } from '@fortawesome/free-solid-svg-icons';
 
 const tg = window.Telegram.WebApp
+const timeToFlipCard = 200
 
 function App() {
 
   const [flippedCards, setFlippedCards] = useState({});
   const [currentCardFlipped, setCurrentCardFlipped] = useState(null);
   const [userLanguage, setUserLanguage] = useState('en');  
-
-  /* ========== Логика разворота карт ========== */
-  const handleCardClick = (cardId, sign) => {
-
-    if (currentCardFlipped === sign) { 
-      setCurrentCardFlipped(null); 
-      setFlippedCards((prevFlipped) => ({
-        ...prevFlipped,
-        [cardId]: false,
-      }));
-    } else { 
-      console.log(sign)
-
-      /* ========== Автопереворот карт в исходное ========== */
-      if (currentCardFlipped) { 
-        const flippedCardIndex = horoscope.findIndex(item => item.nameRu === currentCardFlipped);
-        setFlippedCards((prevFlipped) => ({
-          ...prevFlipped,
-          [flippedCardIndex]: false,
-        }));
-      }
-
-      setFlippedCards((prevFlipped) => ({
-        ...prevFlipped,
-        [cardId]: true,
-      }));
-      setCurrentCardFlipped(sign); 
-    }
-  };
+  const [currentForecast, setCurrentForecast] = useState('')
 
   const horoscope = [
     {nameEn: 'Aquarius', nameRu: 'Водолей', icon: 'faFishFins', period: '21.01 - 18.02'},
@@ -60,65 +33,80 @@ function App() {
   ]
   
   useEffect(() => {
+    /* Инициализируем Телеграм и узнаём язык системы */
     tg.ready();
-    setUserLanguage(tg.initDataUnsafe?.user?.language_code || 'en');
-
-    const fetchData = async () => {
-      try {
-        const data = {
-          "language": "original",
-          "period": "today"
-        };
-
-        const response = await axios.post('https://poker247tech.ru/get_horoscope/', data, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        console.log(response.data); 
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
+    setUserLanguage(tg.initDataUnsafe?.query_id ? 'ru' : 'en'); 
   }, [])  
+
+  const fetchData = async (cardId, sign) => {
+    setFlippedCards({}); 
+    setCurrentCardFlipped(null); 
+
+    if (currentCardFlipped !== sign) { 
+      setFlippedCards((prevFlipped) => ({
+        ...prevFlipped,
+        [cardId]: true,
+      }));
+    }
+
+    await new Promise(resolve => setTimeout(resolve, timeToFlipCard)); 
+    try {
+      const data = {
+        "sign": sign.toLowerCase(),
+        "language": userLanguage === "ru" ? "original" : "en",
+        "period": "today"
+      };
+
+      const response = await axios.post('https://poker247tech.ru/get_horoscope/', data, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      setCurrentForecast(response.data.horoscope)
+      console.log(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const onClose = () => {
     tg.close();
   };
 
   const changeLanguage = () => {
-    if(userLanguage === 'ru'){
-      setUserLanguage('en')
-    }else{
-      setUserLanguage('ru')
-    }
+    setUserLanguage(userLanguage === 'ru' ? 'en' : 'ru');
+    fetchData()
   }
 
   return (
     <div>
+      <header className="header">
+        <div className="language">
+          ↺
+        </div>
+        <div onClick={changeLanguage} className="language">{userLanguage === 'ru'? <div>Ru</div> : <div>En</div>}</div>
+      </header>
       <div className="container">
         {horoscope.map((el, index) => (
           <div
             key={index}
             className={`card ${flippedCards[index] ? 'flipped' : ''}`}
-            onClick={() => handleCardClick(index, el.nameRu)} 
+            onClick={() => fetchData(index, el.nameEn)} 
           >
             <div className="card-front">
-            <FontAwesomeIcon icon={faFishFins} />
               <div className="card-content">
                 <h2 className="card-title">{userLanguage === 'ru' ? el.nameRu : el.nameEn}</h2>
-                <p className="card-text">Описание карточки {index + 1}</p>
+                <p className="card-text">{el.period}</p>
+                <FontAwesomeIcon icon={faFishFins} className="icon-card icon-front"/>
               </div>
             </div>
             <div className="card-back">
-              <p>123</p> 
+              <p>{currentForecast}</p> 
+              <FontAwesomeIcon icon={faFishFins} className="icon-card icon-back"/>
             </div>
           </div>
         ))}
       </div>
-      <button onClick={changeLanguage}>{userLanguage === 'ru'? <div>Rus</div> : <div>Eng</div>}</button>
       <button onClick={onClose}>Close</button>
     </div>
   )
