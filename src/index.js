@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { initMiniApp, mockTelegramEnv, parseInitData } from '@telegram-apps/sdk';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 
 const initializeTelegramSDK = async () => {
   try {
@@ -64,7 +65,10 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 root.render(
+  <Router> 
   <React.StrictMode>
     <App />
   </React.StrictMode>
+  </Router> 
+
 );
