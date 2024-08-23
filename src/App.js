@@ -6,11 +6,15 @@ const tg = window.Telegram.WebApp
 
 function App() {
 
+
+
   const [flippedCards, setFlippedCards] = useState({});
-  const [currentCardFlipped, setCurrentCardFlipped] = useState(null); 
+  const [currentCardFlipped, setCurrentCardFlipped] = useState(null);
+  const [userLanguage, setUserLanguage] = useState('ru');  
 
   /* ========== Логика разворота карт ========== */
   const handleCardClick = (cardId, sign) => {
+
     if (currentCardFlipped === sign) { 
       setCurrentCardFlipped(null); 
       setFlippedCards((prevFlipped) => ({
@@ -19,6 +23,16 @@ function App() {
       }));
     } else { 
       console.log(sign)
+
+      /* ========== Автопереворот карт в исходное ========== */
+      if (currentCardFlipped) { 
+        const flippedCardIndex = horoscope.findIndex(sign => sign === currentCardFlipped);
+        setFlippedCards((prevFlipped) => ({
+          ...prevFlipped,
+          [flippedCardIndex]: false,
+        }));
+      }
+
       setFlippedCards((prevFlipped) => ({
         ...prevFlipped,
         [cardId]: true,
@@ -33,6 +47,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
+    setUserLanguage(tg.initDataUnsafe?.user?.language_code || 'en');
 
     const fetchData = async () => {
       try {
@@ -59,6 +74,14 @@ function App() {
     tg.close();
   };
 
+  const changeLanguage = () => {
+    if(userLanguage === 'ru'){
+      setUserLanguage('en')
+    }else{
+      setUserLanguage('ru')
+    }
+  }
+
   return (
     <div>
       <div className="container">
@@ -81,6 +104,7 @@ function App() {
           </div>
         ))}
       </div>
+      <button onClick={changeLanguage}>{userLanguage == 'ru'? <div>Rus</div> : <div>Eng</div>}</button>
       <button onClick={onClose}>Close</button>
     </div>
   )
