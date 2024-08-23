@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { initMiniApp, mockTelegramEnv, parseInitData } from '@telegram-apps/sdk';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const initializeTelegramSDK = async () => {
   try {

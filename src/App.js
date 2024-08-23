@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFishFins } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Routes, Route, useNavigate } from 'react-router-dom';
 
 const tg = window.Telegram.WebApp;
 const timeToFlipCard = 200;
