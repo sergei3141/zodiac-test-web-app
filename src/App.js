@@ -1,16 +1,16 @@
 import './App.css'
 import {useEffect, useState} from 'react'
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; 
+import { faFishFins } from '@fortawesome/free-solid-svg-icons';
 
 const tg = window.Telegram.WebApp
 
 function App() {
 
-
-
   const [flippedCards, setFlippedCards] = useState({});
   const [currentCardFlipped, setCurrentCardFlipped] = useState(null);
-  const [userLanguage, setUserLanguage] = useState('ru');  
+  const [userLanguage, setUserLanguage] = useState('en');  
 
   /* ========== Логика разворота карт ========== */
   const handleCardClick = (cardId, sign) => {
@@ -26,7 +26,7 @@ function App() {
 
       /* ========== Автопереворот карт в исходное ========== */
       if (currentCardFlipped) { 
-        const flippedCardIndex = horoscope.findIndex(sign => sign === currentCardFlipped);
+        const flippedCardIndex = horoscope.findIndex(item => item.nameRu === currentCardFlipped);
         setFlippedCards((prevFlipped) => ({
           ...prevFlipped,
           [flippedCardIndex]: false,
@@ -41,10 +41,24 @@ function App() {
     }
   };
 
-  const horoscope = ['aquarius', 'aries', 'cancer', 'capricorn',
-                     'gemini', 'leo', 'libra', 'pisces',
-                     'sagittarius', 'scorpio', 'taurus', 'virgo']
+  const horoscope = [
+    {nameEn: 'Aquarius', nameRu: 'Водолей', icon: 'faFishFins', period: '21.01 - 18.02'},
+    {nameEn: 'Aries', nameRu:'Овен', icon: 'faFishFins', period: '21.03 - 19.04'},
+    {nameEn: 'Cancer', nameRu:'Рак', icon: 'faFishFins', period: '22.06 - 22.07'},
 
+    {nameEn: 'Capricorn', nameRu:'Козерог', icon: 'faFishFins', period: '22.12 - 20.11'},
+    {nameEn: 'Gemini', nameRu:'Близнецы', icon: 'faFishFins', period: '21.05 - 20.06'},
+    {nameEn: 'Leo', nameRu:'Лев', icon: 'faFishFins', period: '23.07 - 22.08'},
+
+    {nameEn: 'Libra', nameRu: 'Весы', icon: 'faFishFins', period: '23.09 - 23.10'},
+    {nameEn: 'Pisces', nameRu: 'Рыбы', icon: 'faFishFins', period: '19.02 - 20.03'},
+    {nameEn: 'Sagittarius', nameRu: 'Стрелец', icon: 'faFishFins', period: '23.11 - 21.12'},
+
+    {nameEn: 'Scorpio', nameRu: 'Cкорпион', icon: 'faFishFins', period: '24.10 - 22.11'},
+    {nameEn: 'Taurus', nameRu: 'Телец', icon: 'faFishFins', period: '20.04 - 20.05'},
+    {nameEn: 'Virgo', nameRu: 'Дева', icon: 'faFishFins', period: '23.08 - 22.09'},
+  ]
+  
   useEffect(() => {
     tg.ready();
     setUserLanguage(tg.initDataUnsafe?.user?.language_code || 'en');
@@ -89,12 +103,12 @@ function App() {
           <div
             key={index}
             className={`card ${flippedCards[index] ? 'flipped' : ''}`}
-            onClick={() => handleCardClick(index, el)} 
+            onClick={() => handleCardClick(index, el.nameRu)} 
           >
             <div className="card-front">
-              <img src="https://via.placeholder.com/600x200" alt="Картинка" />
+            <FontAwesomeIcon icon={faFishFins} />
               <div className="card-content">
-                <h2 className="card-title">Название карточки {el}</h2>
+                <h2 className="card-title">{userLanguage === 'ru' ? el.nameRu : el.nameEn}</h2>
                 <p className="card-text">Описание карточки {index + 1}</p>
               </div>
             </div>
