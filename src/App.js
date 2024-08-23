@@ -104,7 +104,7 @@ function App() {
           </div>
         ))}
       </div>
-      <button onClick={changeLanguage}>{userLanguage == 'ru'? <div>Rus</div> : <div>Eng</div>}</button>
+      <button onClick={changeLanguage}>{userLanguage === 'ru'? <div>Rus</div> : <div>Eng</div>}</button>
       <button onClick={onClose}>Close</button>
     </div>
   )
