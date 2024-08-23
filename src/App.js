@@ -12,7 +12,7 @@ function App() {
   const [flippedCards, setFlippedCards] = useState({});
   const [currentCardFlipped, setCurrentCardFlipped] = useState(null);
   const [userLanguage, setUserLanguage] = useState('en');  
-  const [currentForecast, setCurrentForecast] = useState('')
+  const [currentForecast, setCurrentForecast] = useState('Loading...')
 
   const horoscope = [
     {nameEn: 'Aquarius', nameRu: 'Водолей', icon: 'faFishFins', period: '21.01 - 18.02'},
@@ -35,7 +35,7 @@ function App() {
   useEffect(() => {
     /* Инициализируем Телеграм и узнаём язык системы */
     tg.ready();
-    setUserLanguage(tg.initDataUnsafe?.query_id ? 'ru' : 'en'); 
+    setUserLanguage(tg?.initDataUnsafe?.user?.language_code ? 'ru' : 'en'); 
   }, [])  
 
   const fetchData = async (cardId, sign) => {
@@ -101,8 +101,8 @@ function App() {
               </div>
             </div>
             <div className="card-back">
-              <p>{currentForecast}</p> 
-              <FontAwesomeIcon icon={faFishFins} className="icon-card icon-back"/>
+              <p>{currentForecast.match(/^(.*?)\./)[1].trim()}...</p> 
+              <button className="button">Read more</button>
             </div>
           </div>
         ))}

@@ -18,6 +18,7 @@ body {
 .header{
   position: fixed;
   top: 0;
+  left: 0;
   z-index: 2;
   background-color: #2f2037;
   width: 100%;
@@ -45,7 +46,7 @@ body {
 .card {
   position: relative;
   width: 150px;
-  min-height: 130px;
+  min-height: 150px;
   margin: 10px;
   transition: transform 0.8s ease-in-out;
   transform-style: preserve-3d;
@@ -56,6 +57,7 @@ body {
   border-radius: 4px; /* Скругленные углы */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Приятная тень */
   color: #3d0f5e;
+  word-break:keep-all;
 }
 
 .card:active { 
@@ -114,30 +116,31 @@ body {
 }
 
 .icon-front{
-  margin-top: 10px;
-  font-size: 30px;
+  margin-top: 20px;
+  font-size: 40px;
 }
 
 .icon-back{
   margin-top: 20px;
-  font-size: 60px;
+  font-size: 80px;
   margin-left: calc(50% - 30px);
 }
 
 .button {
-  margin-top: 30px;
-  width: 300px;
   background-color: #c8a2c8;
   color: white; 
   border: none; 
-  padding: 12px 20px; 
-  border-radius: 8px; 
+  border-radius: 4px; 
   font-size: 16px;
   cursor: pointer;
+  padding: 3px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.1s ease; 
   display: block;     
-  margin: 30px auto 0px auto;   
+  margin: 0px auto 0px auto;   
+  position: absolute;
+  bottom: 10px;
+  width: 70%;
 }
 
 .button:active {
