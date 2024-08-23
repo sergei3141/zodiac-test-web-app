@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFishFins } from '@fortawesome/free-solid-svg-icons';
-import { BrowserRouter as Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 const tg = window.Telegram.WebApp;
 const timeToFlipCard = 200;
@@ -88,7 +88,7 @@ function App() {
       <div>
         <header className="header">
           <div className="language">↺</div>
-          <div>{tg.initDataUnsafe.user.language_code}</div>
+          <div>{tg?.initDataUnsafe?.user?.language_code}</div>
           <div onClick={changeLanguage} className="language">
             {userLanguage === 'ru' ? <div>Ru</div> : <div>En</div>}
           </div>
