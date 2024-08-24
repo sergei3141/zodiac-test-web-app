@@ -10,7 +10,7 @@ const initializeTelegramSDK = async () => {
     console.log("Инициализация окружения Telegram");
     const [miniApp] = initMiniApp();
     await miniApp.ready();
-    miniApp.setHeaderColor('#fcb69f');
+    miniApp.setHeaderColor('#3d0f5e');
   } catch (error) {
     // В случае ошибки инициализируем фейковое окружение
     console.error('Ошибка при инициализации Telegram:', error);
@@ -66,9 +66,7 @@ const root = createRoot(container);
 
 root.render(
   <Router> 
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
   </Router> 
 
 );
