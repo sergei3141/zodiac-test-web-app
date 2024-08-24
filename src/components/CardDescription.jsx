@@ -9,16 +9,16 @@ const [backButton] = initBackButton();
 const CardDescription = ({ currentForecast, selectedSign }) => {
 
     const navigate = useNavigate();
+    backButton.show()
+    backButton.on('click', () => {
+        alert(0) 
+    });    
 
-    useEffect(() => {
-        initBackButton(); 
+    useEffect(()=>{
         backButton.on('click', () => {
-          navigate(-1); 
-        });
-      
-        // Очистка слушателя при размонтировании или изменении navigate
-        return () => backButton.off('click'); 
-      }, [navigate]);
+            alert(0) 
+        });    
+    }, [])
 
   return (
     <div className="card-description">
