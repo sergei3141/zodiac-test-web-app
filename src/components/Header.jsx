@@ -34,7 +34,7 @@ const Header = ({ userLanguage, changeLanguage }) => {
     if (userData) {
       fetchUserProfilePhotos();
     }
-  }, [userData]);
+}, [userData, userId]); 
 
   return (
     <header className="header">
