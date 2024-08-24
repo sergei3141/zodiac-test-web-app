@@ -37,8 +37,24 @@ body {
   cursor: pointer;
 }
 
-.userinfo{
+.userinfo, .card-description-header{
 display: flex;
+}
+
+.card-description-header{
+  background-color: #b39ab3b0;
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+  padding: 10px 30px;
+  border-radius: 4px 4px 0px 0px;
+  justify-content: space-between;
+}
+
+.card-description-icon{
+  font-size: 50px;
+  opacity: 0.4;
+  margin: -10;
 }
 
 .username{
@@ -86,7 +102,8 @@ display: flex;
 
 .card-description{
   width: 90%;
-  margin: auto;
+  margin: 70px auto;
+  margin-top: 70px;
 }
 
 .description-text{
@@ -94,12 +111,22 @@ display: flex;
 }
 
 .card-description h1{
-  background-color: #b39ab3b0;
+  margin-top: 7px;
+}
+
+.card-description-period{
+  background-image: 
+    linear-gradient(to right, transparent, #4d2c60, transparent),
+    linear-gradient(to right, transparent, #4d2c60, transparent);
+  background-size: 100% 2px, 100% 2px;     
+  background-repeat: no-repeat, no-repeat;
+  background-position: top, bottom; 
+  width: 50%;
+  margin: 10px auto;
+  padding: 8px 0;
   text-align: center;
-  margin-bottom: 20px;
-  color: white;
-  padding: 20px 30px;
-  border-radius: 4px 4px 0px 0px;
+  color: #4d2c60;
+  font-size: 18px;
 }
 
 .card:active { 

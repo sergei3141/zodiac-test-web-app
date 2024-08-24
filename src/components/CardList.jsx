@@ -13,9 +13,7 @@ const CardList = ({ horoscope, flippedCards, fetchData, userLanguage, handleRead
         >
           <div
             className="card-front"
-            onClick={() => {
-              fetchData(index, el.nameEn, userLanguage);
-            }}
+            onClick={() => {fetchData(index, el.nameEn, userLanguage)}}
           >
             <div className="card-content">
               <h2 className="card-title">
@@ -27,11 +25,9 @@ const CardList = ({ horoscope, flippedCards, fetchData, userLanguage, handleRead
               </div>
             </div>
           </div>
+
           <div className="card-back">
-            <p>
-              {currentForecast.match(/^(.*?)\./)?.[1].trim() ||
-                'Loading...'}
-            </p>
+            <p>{currentForecast.match(/^(.*?)\./)?.[1].trim() || 'Loading...'}</p>
             <button className="button" onClick={handleReadMore}>
               <FontAwesomeIcon icon={faAnglesRight} />
             </button>
