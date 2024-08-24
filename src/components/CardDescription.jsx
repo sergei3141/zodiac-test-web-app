@@ -12,13 +12,13 @@ const CardDescription = ({ currentForecast, selectedSign }) => {
     backButton.show()
     backButton.on('click', () => {
         navigate(-1) 
-        backButton.hidden()
+        backButton.hide()
     });    
 
     useEffect(()=>{
         backButton.on('click', () => {
             navigate(-1) 
-            backButton.hidden()
+            backButton.hide()
         });    
     }, [navigate])
 

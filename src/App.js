@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
+    backButton.hide()
     // initBackButton()
     setUserLanguage(tg?.initDataUnsafe?.user?.language_code ? 'ru' : 'en');
   }, []);
