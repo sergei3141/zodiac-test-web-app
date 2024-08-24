@@ -10,11 +10,15 @@ const CardDescription = ({ currentForecast, selectedSign }) => {
 
     const navigate = useNavigate();
 
+    backButton.on('click', () => {
+        navigate(-1); 
+    });    
+
     useEffect(()=>{
         backButton.on('click', () => {
             navigate(-1); 
         });    
-    })
+    }, [])
 
   return (
     <div className="card-description">
