@@ -14,6 +14,7 @@ const initializeTelegramSDK = async () => {
     miniApp.setHeaderColor('#3d0f5e');
   } catch (error) {
     // В случае ошибки инициализируем фейковое окружение
+    // Нужно исключительно для разработки, чтобы React не выдавал ошибок
     console.error('Ошибка при инициализации Telegram:', error);
 
     const initDataRaw = new URLSearchParams([
