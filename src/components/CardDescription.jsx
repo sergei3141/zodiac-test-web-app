@@ -10,12 +10,15 @@ const CardDescription = ({ currentForecast, selectedSign }) => {
 
     const navigate = useNavigate();
 
-    useEffect(()=>{
-        initBackButton();
+    useEffect(() => {
+        initBackButton(); 
         backButton.on('click', () => {
-            navigate(-1)
-        });    
-    }, [])
+          navigate(-1); 
+        });
+      
+        // Очистка слушателя при размонтировании или изменении navigate
+        return () => backButton.off('click'); 
+      }, [navigate]);
 
   return (
     <div className="card-description">
