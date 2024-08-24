@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Mini App Telegram
+Приложение уже работает и доступно по ссылке https://t.me/zodiacSigntTestBot. 
+Инструкция ниже приведена только для развёртывания нового независимого бота.
+Если хотите запустить проект локально, сразу переходите к разделу "Дополнительно"
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Установка
 
-## Available Scripts
+Приложение состоит из двух частей - бота, размещённого на сервере и mini app, которое может быть размещено в том числе на статическом сервере.\
 
-In the project directory, you can run:
+## Размещение mini app Telegram на статическом сервере
 
-### `npm start`
+Для запуска mini app вам также потребуется загрузить его на сервер (достаточно стиатического). Клонируйте данный проект в собственный репозиторий GitHub.\
+В данном примере мы будем использовать Netlify в качестве сервера. Пройдите регистрацию, свяжите собственный репозиторий \
+с Netlify и подтягите проект с вашего репозитория GitHub. Дождитесь, пока проект будет собран и размещён по ссылке. \
+Полученную ссылку сохраните
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Размещение mini app Telegram на сервере
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Для корректной работы mini app Telegram требуется настройка бота Телеграм. Бота можно скачать по ссылке: https://github.com/sergei3141/Zodiac_telegram_bot
+Откройте телеграм и найдите бота BotFather. Задайте команду /newbot и следуйте инструкциям. \
+После успешной регистрации бота получите токен и вставьте в созданный вами .env файл TELEGRAM_BOT_TOKEN и ранее сохранённую WEB_APP_URL\
+Разверните данного бота на сервере и запустите. Не забудьте переменные окружения, созданные пунктом выше!
 
-### `npm test`
+## Запуск:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Найдите созданного вами бота.\
+Бот перенаправит вас в рабочее приожение Zodiac mini app Telegram
 
-### `npm run build`
+## Дополнительно:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Вы также можете запустить проект в браузере, клонировав его локально и выполнив команду `npm i`, а затем `npn start`,\
+однако в таком случае некоторые функции, предоставляемые Telegram\
+работать не будут (BackButton, CloseApp), а также определение имени и языка пользователя
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
