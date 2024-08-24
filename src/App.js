@@ -78,7 +78,7 @@ function App() {
       backButton.on('click', () => {
           navigate(-1)
       });    
-  }, [])
+  }, [navigate])
 
 
 
