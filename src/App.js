@@ -96,7 +96,7 @@ function App() {
               {" "} 
               {tg?.initDataUnsafe?.user?.last_name || "Surname"} 
             </p>
-            <img src={tg?.initDataUnsafe?.user?.photo_url || "https://placehold.jp/50x50.png"} className="userphoto"></img>
+            <img src={tg?.initDataUnsafe?.user?.photo_url || "https://placehold.jp/50x50.png"} className="userphoto" alt="user_photo"></img>
           </div>
         </header>
         <Routes> 
