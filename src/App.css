@@ -22,16 +22,32 @@ body {
   z-index: 2;
   background-color: #2f2037;
   width: 100%;
-  height: 56px;
+  height: 60px;
   color:#f5f0f8;
   font-size: 28px;
-  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
 
 .language{
+  margin: 15px 10px;
   cursor: pointer;
+}
+
+.userinfo{
+display: flex;
+}
+
+.username{
+  margin: 20px 10px;
+  font-size: 20px;
+}
+
+.userphoto{
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  margin: 5px;
 }
 
 .container {
@@ -43,11 +59,8 @@ body {
   justify-content: center;
   }
 
-.card {
+.card, .card-description {
   position: relative;
-  width: 150px;
-  min-height: 150px;
-  margin: 10px;
   transition: transform 0.8s ease-in-out;
   transform-style: preserve-3d;
   cursor: pointer;
@@ -58,6 +71,30 @@ body {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Приятная тень */
   color: #3d0f5e;
   word-break:keep-all;
+}
+
+.card{
+  width: 150px;
+  min-height: 150px;
+  margin: 10px;
+}
+
+.card-description{
+  width: 90%;
+  margin: auto;
+}
+
+.description-text{
+  margin: 15px 30px 60px 30px;
+}
+
+.card-description h1{
+  text-align: center;
+  margin-bottom: 20px;
+  background-color: #a392ae;
+  color: #3d0f5e;
+  padding: 20px 30px;
+  border-radius: 4px 4px 0px 0px;
 }
 
 .card:active { 
@@ -80,7 +117,10 @@ body {
   transform: rotateY(180deg);
   z-index: 1;
   font-size: 12px;
-  padding: 20px;
+}
+
+.card-back p{
+  margin: 20px;
 }
 
 .flipped {
@@ -111,6 +151,11 @@ body {
   color: #666;
 }
 
+.card-description {
+  font-size: 0.9rem;
+  color: #666;
+}
+
 .icon-card{
   opacity: 0.2;
 }
@@ -137,7 +182,7 @@ body {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.1s ease; 
   display: block;     
-  margin: 0px auto 0px auto;   
+  margin: 0px 15% 0px ;   
   position: absolute;
   bottom: 10px;
   width: 70%;

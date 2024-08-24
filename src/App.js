@@ -87,10 +87,16 @@ function App() {
 
       <div>
         <header className="header">
-          <div className="language">↺</div>
-          <div>{tg?.initDataUnsafe?.user?.language_code}</div>
           <div onClick={changeLanguage} className="language">
             {userLanguage === 'ru' ? <div>Ru</div> : <div>En</div>}
+          </div>
+          <div className="userinfo">
+            <p className='username'>
+              {tg?.initDataUnsafe?.user?.first_name || 'Name'}
+              {" "} 
+              {tg?.initDataUnsafe?.user?.last_name || "Surname"} 
+            </p>
+            <img src={tg?.initDataUnsafe?.user?.photo_url || "https://placehold.jp/50x50.png"} className="userphoto"></img>
           </div>
         </header>
         <Routes> 
@@ -125,11 +131,10 @@ function App() {
           <Route
             path="/card/:sign"
             element={
-              <div>
-                {/* Здесь будет контент страницы с полным гороскопом */}
+              <div className="card-description">
                 <h1>Full horoscope for {selectedSign}</h1>
-                <p>{currentForecast}</p>
-                <button onClick={() => navigate('/')}>Back to Home</button>
+                <p className="description-text">{currentForecast}</p>
+                <button onClick={() => navigate('/')} className='button'>Back to Home</button>
               </div>
             }
           />
