@@ -11,15 +11,19 @@ const Header = ({ userLanguage, changeLanguage }) => {
   useEffect(() => {
     const fetchUserProfilePhotos = async () => {
       try {
-        const result = await tg.getUserProfilePhotos();
-        if (result.photos.length > 0) {
-          // Выбираем фото нужного размера 
-          const photo = result.photos[0][0];
-          const fileId = photo.file_id;
-          
-          // Получаем URL фотографии 
-          const fileUrl = await tg.getFileUrl(fileId);
-          setPhotoUrl(fileUrl);
+        if (userId) { 
+            console.log(userId)
+          const result = await tg.getUserProfilePhotos(userId); 
+            if (result.photos.length > 0) {
+            // Выбираем фото нужного размера 
+            console.log(result)
+            const photo = result.photos[0][0];
+            const fileId = photo.file_id;
+            
+            // Получаем URL фотографии 
+            const fileUrl = await tg.getFileUrl(fileId);
+            setPhotoUrl(fileUrl);
+            }
         }
       } catch (error) {
         console.error('Ошибка при получении фото профиля:', error);
