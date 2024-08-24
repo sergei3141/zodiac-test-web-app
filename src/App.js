@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-// import { initBackButton } from '@telegram-apps/sdk';
+//import { initBackButton } from '@telegram-apps/sdk';
 
 import Header from './components/Header'; 
 import CardList from './components/CardList';
@@ -10,7 +10,7 @@ import CardDescription from './components/CardDescription';
 import horoscope from './data';
 import Footer from './components/Footer';
 
-// const [backButton] = initBackButton();
+//const [backButton] = initBackButton();
 const tg = window.Telegram.WebApp;
 const timeToFlipCard = 200;
 
@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
-    backButton.hide()
+    // backButton.hide()
     // initBackButton()
     setUserLanguage(tg?.initDataUnsafe?.user?.language_code ? 'ru' : 'en');
   }, []);
