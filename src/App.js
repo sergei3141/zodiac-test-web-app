@@ -21,7 +21,10 @@ function App() {
 
   useEffect(() => {
     tg.ready();
-    setUserLanguage(tg?.initDataUnsafe?.user?.language_code ? 'ru' : 'en');
+    console.log(tg)
+    debugger;
+    /* ======= Если есть русский язык, выбираем русский. В остальных английский ======= */
+    setUserLanguage(tg?.initDataUnsafe?.user?.language_code === 'ru' ? 'ru' : 'en');
   }, []);
 
   const fetchData = async (cardId, sign, language) => {
